@@ -1,0 +1,9 @@
+.center{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.footer{
+    justify-content: center;
+    align-items: center;
+}
