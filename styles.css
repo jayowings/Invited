@@ -31,6 +31,7 @@ a{
 .forms{
     justify-items: right;
     margin-right: 10px;
+    text-align: center;
 }
 
 .slideshow{
