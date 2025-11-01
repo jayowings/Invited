@@ -13,11 +13,20 @@ a{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    text-align: center;
+}
+.link{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50%;
+    text-align: center;
 }
 .names{
     margin-left: 20px;
     font-size: 50px;
     color: #fff;
+    text-align: center;
 }
 .forms{
     justify-items: right;
@@ -121,6 +130,14 @@ h1{
 .else{
     text-align: center;
     font-size: 70px;
+}
+.reception{
+    text-align: center;
+    font-size: 45px;
+    font-weight: 5px;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 
 .Break{
