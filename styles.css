@@ -3,7 +3,6 @@ body{
 }
 a{
     color: inherit;
-    text-decoration: none;
 }
 
 .header{
@@ -115,6 +114,7 @@ h1{
     font-size: 107px;
     padding: 0;
     margin: 0;
+    margin-top: 5px;
 }
 .J{
     padding-left: calc(2vw);
@@ -150,7 +150,7 @@ h1{
     text-align: center;
     left: 0%;
     right: 0%;
-    padding: 20px;
+    padding: 1px;
 }
 .Registry{
     display: flex;
@@ -158,13 +158,14 @@ h1{
     justify-content: space-evenly;
     text-align: center;
     width: 100%;
-    padding: 20px;
+    padding: 1px;
     align-items: stretch;
 }
 .Registry img{
     height: 75px;
     border-radius: 50%;
     margin-top: auto;
+    margin-bottom: 10px;
 }
 .reg{
     display: flex;
@@ -172,6 +173,9 @@ h1{
     justify-content: space-between;
     width: 33%;
     align-items: center;
+}
+h4{
+    margin-bottom: 0px;
 }
 
 .Venmo{
