@@ -46,5 +46,29 @@
     "story": "Write a short story or description here.",
     "likes": 0,
     "date": "2025-01-17"
+  },
+  {
+    "id": "photo-007",
+    "url": "https://lh3.googleusercontent.com/pw/AP1GczMtck0-gfV8kb9hKO9pwhvPpSM9Cv3aDsgOHSuY7sLMydjwxkeHkxJrF9Hauu5OTW16t27Kb6Ur31qu9cIJMiqhiTBnZ7K-BYwjQF0BwoGNN3D7cV1btQzzh7iVOyIoAs21d1Zudyo_Ba6siePvR2S9jg=w809-h607-s-no-gm?authuser=0",
+    "title": "Seventh Photo",
+    "story": "Write a short story or description here.",
+    "likes": 0,
+    "date": "2025-01-17"
+  },
+  {
+    "id": "photo-008",
+    "url": "https://lh3.googleusercontent.com/pw/AP1GczOHhSCNEDUICUZeOFrmywIILO65HYVms7-wD1juU9ogvkpAsk_fhfCbscfjc0mVS35P4-EFoM0sSdVy0p7q_yImcsrezpEjAJuDwh5nyvQLjdgnJcFjztsUm2gScuhDlZ2VbC3JvyjxUIRwvjTvjhOdlA=w455-h607-s-no-gm?authuser=0",
+    "title": "Eighth Photo",
+    "story": "Write a short story or description here.",
+    "likes": 0,
+    "date": "2025-01-17"
+  },
+  {
+    "id": "photo-9",
+    "url": "https://lh3.googleusercontent.com/pw/AP1GczPtL6zuhUy2fHBb2aOFMvtg5hyBWUMPo7pM7T8YPL7NZwKeuGaa9Tl9fZDq4Ng1X9FTrHsF40PnCG9Wj8Nl3YytGIRfEuGdoMxMSCO2L_nX9pi66pL12vSkYh5RlfP_KNtbOlVpBLpBCM4p-B8tas0S9Q=w455-h607-s-no-gm?authuser=0",
+    "title": "Ninth Photo",
+    "story": "Write a short story or description here.",
+    "likes": 0,
+    "date": "2025-01-17"
   }
 ]
