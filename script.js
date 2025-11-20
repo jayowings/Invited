@@ -49,6 +49,10 @@ async function loadPhotos() {
       //TODO add click statements to photots
       return div;
     });
+
+    const loading = document.getElementById('loadingMessage');
+    if (loading) loading.remove();
+
     startSlideshowSystem();
   }catch(err) {
     console.log("Error occurred in creating slideshow or accessing photos", err);
