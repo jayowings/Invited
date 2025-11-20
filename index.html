@@ -7,22 +7,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kapakana:wght@300..400&family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="ring.png">
+    <link rel="icon" href="ring.png"><!--favicon-->
     <title>Jayden and Eden Owings</title>
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="header">
+    <div class="header"><!--Header will be constant on all pages-->
         <h1 class="names">Jayden Owings & Eden Baxter</h1>
         <div class="link">
             <h5 class="forms"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdDz5X186wEdDt3P4RxD7U3knerQVbfKGT4zKmDhNS4k9bnOA/viewform?usp=publish-editor">RSVP</a></h5>
+            <h5>GALLERY</h5><!--TODO-->
             <h5 class="forms"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfbFoEcPxVBzuceBSOD9fcnSRGO8Icm_Mgth-w-mg0Y6ty6ww/viewform?usp=dialog">REQUEST PHYSICAL ANNOUNCEMENT</a></h5>
         </div>
     </div>
-    <div class="slideshow" aria-label="Image slideshow">
-        <button class="nav prev" aria-label="Previous slide">&#10094;</button>
+    <div class="slideshow" aria-label="Image slideshow"><!--Slideshow feature-->
+        <button class="nav prev" aria-label="Previous slide">&#10094;</button><!--back arrow-->
         <div class="viewport">
-            <div class="pics">
+            <div class="pics"><!--temporary picture files, will be added in JSON file via js-->
                 <div class="pic"><img src="https://lh3.googleusercontent.com/pw/AP1GczO3ZIDgzFSa4B_9pyL_Vu4qlYVBnr4YnQ1Pi7SBUp62MtBOFlPk0kJSdJZfviSfbdHOvQWpAmwk-xY2Y-1Tgm6diIwGDcU1AsgrR57nn1qSfIH81_5fPSKHmZ1YQMJ-RYmfC484NAg9CIY9R8zA8Rl3cw=w273-h607-s-no-gm?authuser=0" alt=""></div>
                 <div class="pic"><img src="https://lh3.googleusercontent.com/pw/AP1GczMsFfcD4jisYhtdJughebLosVb7qaD2T9TLB5QirDRUzdbxi11qFfQv-bOi8TUk-guSi-vHt1dkJC7NXR0qKzFYusBdIzmahqLQSa8DprEBzeThzKPvptaeYFjkXFjC3u5tbtdUZn9pRagjD8ySaxPzyw=w461-h615-s-no-gm?authuser=0" alt=""></div>
                 <div class="pic"><img src="https://lh3.googleusercontent.com/pw/AP1GczNgzM9ghkQjxiQVLr1iiobogJ3KhIkkeMpZr-R_rHuwpyy6cqN-ZI-psy5a0mp1FZaiX99n6jOMxvBOTNpwaeohlAIIkoOH1UuGSkCzJnU7MO0rAyluX0R6vT141GA0CNwy6ZPjlaAjQzaE0jjvtRo3zw=w461-h615-s-no-gm?authuser=0" alt=""></div>
@@ -34,39 +35,39 @@
                 <div class="pic"><img src="https://lh3.googleusercontent.com/pw/AP1GczPtL6zuhUy2fHBb2aOFMvtg5hyBWUMPo7pM7T8YPL7NZwKeuGaa9Tl9fZDq4Ng1X9FTrHsF40PnCG9Wj8Nl3YytGIRfEuGdoMxMSCO2L_nX9pi66pL12vSkYh5RlfP_KNtbOlVpBLpBCM4p-B8tas0S9Q=w455-h607-s-no-gm?authuser=0" alt=""></div>
             </div>
         </div>
-        <button class="nav next" aria-label="Next slide">&#10095;</button>
+        <button class="nav next" aria-label="Next slide">&#10095;</button><!--forward arrow-->
     </div>
 
-    <div class="center">
-        <div>
+    <div class="Break"><!--Registries-->
+        <h4>REGISTRIES</h4>
+        <div class="Registry">
+            <a href="https://www.amazon.com/wedding/registry/1XW15SZQXPLHM" class="reg"><!--full area will be a link-->
+                <h4>Amazon</h4>
+                <h6>Storage, kitchen, etc.</h6><!--TODO -- not underlined-->
+                <img src="amazon.png" alt="">
+            </a>
+            <a href="https://www.walmart.com/registry/wr/045c92d8-5f08-4bd8-9c3a-fd462a4f12f7" class="reg"><!--full area will be a link-->
+                <h4>Walmart</h4>
+                <h6>Cleaning supplies, medicine cabinet, etc.</h6><!--TODO -- not underlined-->
+                <img src="Walmart.png" alt="">
+            </a>
+        </div>
+    </div>
+
+    <div class="center"><!--names-->
+        <div><!--Add a photo background?-->
             <h1 class="J">Jayden Owings</h1>
             <h1 class="else">&</h1>
             <h1 class="E">Eden Baxter</h1>
             <h1 class="else">1 / 17 / 26</h1>
-            <h3 class="reception">Bountiful Temple TIME</h3>
-            <h3 class="reception">Reception held at TIME at</h3>
-            <h3 class="reception">ADDRESS</h3>
+            <h3 class="reception">Bountiful Temple 10:30am</h3>
+            <h3 class="reception">Reception held at 3:30pm at</h3>
+            <h3 class="reception">2160 W Gordon Ave, Layton, UT</h3>
         </div>
     </div>
-    <div class="Break">
-        <h4>REGISTRIES</h4>
-        <div class="Registry">
-            <div class="reg">
-                <h4>Amazon</h4>
-                <h5>Fun Stuff!!</h5>
-                <h6>Storage, kitchen, etc.</h6>
-                <a href="https://www.amazon.com/wedding/registry/1XW15SZQXPLHM"><img src="amazon.png" alt=""></a>
-            </div>
-            <div class="reg">
-                <h4>Walmart</h4>
-                <h5>Emergency Stuff!!</h5>
-                <h6>Cleaning supplies, medicine cabinet, etc.</h6>
-                <a href="https://www.walmart.com/registry/wr/045c92d8-5f08-4bd8-9c3a-fd462a4f12f7"><img src="Walmart.png" alt=""></a>
-            </div>
-        </div>
-    </div>
-    <div class="Venmo">
-        <h4>HELP US DECIDE ON OUR HONEYMOON!</h4>
+    
+    <div class="Venmo"><!--Venmos-->
+        <h4>HELP US DECIDE ON OUR HONEYMOON!</h4><!--Should this be a constant visible footer/pop-up footer?-->
         <div class="Choices">
             <div class="ven">
                 <h5>Park City 1/17-1/19</h5>
