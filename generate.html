@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Photos.json Generator</title>
+</head>
+<body>
+  <h2>Append URLs to photos.json</h2>
+
+  <p>Upload your existing <b>photos.json</b>:</p>
+  <input type="file" id="jsonFile"><br><br>
+
+  <p>Upload your <b>urls.txt</b> file:</p>
+  <input type="file" id="urlsFile"><br><br>
+
+  <button id="processBtn">Generate Updated photos.json</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    document.getElementById("processBtn").onclick = async () => {
+      const jsonFile = document.getElementById("jsonFile").files[0];
+      const urlsFile = document.getElementById("urlsFile").files[0];
+
+      if (!jsonFile || !urlsFile) {
+        alert("Please select both files.");
+        return;
+      }
+
+      // Read JSON file
+      const jsonText = await jsonFile.text();
+      let existing = [];
+      try {
+        existing = JSON.parse(jsonText);
+      } catch (e) {
+        alert("Invalid photos.json file");
+        return;
+      }
+
+      // Read URLs
+      const urlsText = await urlsFile.text();
+      const urls = urlsText.split("\n").map(u => u.trim()).filter(u => u.length > 0);
+
+      let startIndex = existing.length + 1;
+
+      // Append new entries
+      urls.forEach((url, i) => {
+        existing.push({
+          id: `photo-${String(startIndex + i).padStart(3, '0')}`,
+          url: url,
+          title: `Photo ${startIndex + i}`,
+          story: "",
+          likes: 0,
+          date: "2025-01-17"
+        });
+      });
+
+      const outputJson = JSON.stringify(existing, null, 2);
+      document.getElementById("output").textContent = outputJson;
+
+      // Trigger file download
+      const blob = new Blob([outputJson], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "photos.json";
+      a.click();
+    };
+  </script>
+</body>
+</html>
