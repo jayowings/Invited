@@ -34,8 +34,18 @@ async function loadPhotos() {
   try{
     const response = await fetch('/photos.json');
     const data = await response.json();
+    const totalPhotos = data.length;
 
-    const slideshowPhotos = data.slice(0, 25); //first 25, will randomize photo selection later
+    const startIndex = Math.floor(Math.random() * totalPhotos);
+
+    const maxSlides = 25;
+    const slideshowPhotos = []; //starts empty
+
+    for(let i = 0; i < maxSlides; i++){
+      slideshowPhotos.push(
+        data[(startIndex + i) % totalPhotos]
+      );
+    }
 
     //create elements
     originalPics = slideshowPhotos.map(photo => {
