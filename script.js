@@ -7,28 +7,31 @@ let index = 1;
 let timer;
 let visibleSlides = 3;
 let size;
-picsContainer.style.transform = `translateX(-${index * size}%)`;
-picsContainer.addEventListener('transitionend', () => {
-  const total = pics.length;
-  const numClones = Math.ceil(visibleSlides + 1);
-  
-  if (index >= total - numClones) {
-    picsContainer.style.transition = 'none';
-    index = numClones;
-    picsContainer.style.transform = `translateX(-${index * size}%)`;
-  }
-  if (index < numClones) {
-    picsContainer.style.transition = 'none';
-    index = total - numClones - 1;
-    picsContainer.style.transform = `translateX(-${index * size}%)`;
-  }
-
-});
-document.querySelector('.next').addEventListener('click', () => { nextPic(); resetTimer(); });
-document.querySelector('.prev').addEventListener('click', () => { prevPic(); resetTimer(); });
 window.addEventListener('resize', handleResize);
 
-loadPhotos();
+//Home page
+function initSlideshow(){
+  picsContainer.style.transform = `translateX(-${index * size}%)`;
+  picsContainer.addEventListener('transitionend', () => {
+    const total = pics.length;
+    const numClones = Math.ceil(visibleSlides + 1);
+    
+    if (index >= total - numClones) {
+      picsContainer.style.transition = 'none';
+      index = numClones;
+      picsContainer.style.transform = `translateX(-${index * size}%)`;
+    }
+    if (index < numClones) {
+      picsContainer.style.transition = 'none';
+      index = total - numClones - 1;
+      picsContainer.style.transform = `translateX(-${index * size}%)`;
+    }
+  });
+  document.querySelector('.next').addEventListener('click', () => { nextPic(); resetTimer(); });
+  document.querySelector('.prev').addEventListener('click', () => { prevPic(); resetTimer(); });
+
+  loadPhotos();
+}
 
 async function loadPhotos() {
   try{
@@ -151,4 +154,9 @@ function startSlideshowSystem(){ //easy restart call
   calculateSize();
   updatePics();
   startSlideshow();
+}
+
+//Gallery page
+function initGalleryPage(){
+  
 }
