@@ -34,7 +34,6 @@ function initSlideshow(){
 }
 
 async function loadPhotos() {
-  try{
     const response = await fetch('/photos.json');
     const data = await response.json();
     const totalPhotos = data.length;
@@ -45,31 +44,29 @@ async function loadPhotos() {
     const slideshowPhotos = []; //starts empty
 
     for(let i = 0; i < maxSlides; i++){
-      slideshowPhotos.push(
-        data[(startIndex + i) % totalPhotos]
-      );
+        slideshowPhotos.push(
+          data[(startIndex + i) % totalPhotos]
+        );
     }
 
     //create elements
     originalPics = slideshowPhotos.map(photo => {
-      const div = document.createElement('div');
-      div.className = 'pic';
+        const div = document.createElement('div');
+        div.className = 'pic';
 
-      const img = document.createElement('img');
-      img.src = photo.url;
-      img.alt = photo.title || "";
-      div.appendChild(img);
-      //TODO add click statements to photots
-      return div;
+        const img = document.createElement('img');
+        img.src = photo.url;
+        img.alt = photo.title || "";
+        div.appendChild(img);
+        //TODO add click statements to photots
+        return div;
     });
 
     const loading = document.getElementById('loadingMessage');
     if (loading) loading.remove();
 
     startSlideshowSystem();
-  }catch(err) {
     console.log("Error occurred in creating slideshow or accessing photos", err);
-  }
 }
 
 function updatePics() {//progress slides
@@ -157,6 +154,22 @@ function startSlideshowSystem(){ //easy restart call
 }
 
 //Gallery page
-function initGalleryPage(){
-  
+async function initGalleryPage(){
+    const response = await fetch('/photos.json');
+    const photos = await response.json();
+
+    const container = document.getElementById('galleryGrid');
+
+    photos.forEach(photo => {
+        const card = document.createElement('div');
+        card.className = 'gallery-image';
+
+        const img = document.createElement('img');
+        img.src = photo.url;
+        img.alt = photo.title || "";
+        img.loading = "lazy"; // good for performance
+        //TODO highlighted image seperate page
+        card.appendChild(img);
+        container.appendChild(card);
+    });
 }
