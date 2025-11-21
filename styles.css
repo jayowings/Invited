@@ -213,3 +213,11 @@ body{
     font-style: normal;
     text-decoration: underline;
 }
+
+.gallery{
+    width: 100%;
+    background-color: rgb(153, 175, 196);
+}
+.gallery-image{
+    padding-top: 10px;
+}
