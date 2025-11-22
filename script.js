@@ -155,6 +155,9 @@ function startSlideshowSystem(){ //easy restart call
 
 //Gallery page
 async function initGalleryPage(){
+    window.addEventListener("load", updateGalleryColumns);
+    window.addEventListener("resize", updateGalleryColumns);
+
     const response = await fetch('/photos.json');
     const photos = await response.json();
 
@@ -176,6 +179,7 @@ async function initGalleryPage(){
             } else {
                 card.classList.add('portrait');
             }
+            updateGalleryColumns()
         };
 
         //TODO highlighted image seperate page
@@ -183,4 +187,23 @@ async function initGalleryPage(){
         card.appendChild(img);
         container.appendChild(card);
     });
+}
+
+function updateGalleryColumns(){
+    const gallery = document.getElementById("galleryGrid");
+    const screenWidth = window.innerWidth;
+
+    let columns;
+
+    if (screenWidth >= 1200) {
+        columns = 4; // desktop large
+    } else if (screenWidth >= 900) {
+        columns = 3; // tablet landscape
+    } else if (screenWidth >= 600) {
+        columns = 2; // tablet portrait
+    } else {
+        columns = 1; // mobile
+    }
+
+    gallery.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
 }
