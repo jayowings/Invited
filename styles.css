@@ -216,23 +216,27 @@ body{
 
 .gallery{
     display: grid;
-    width: 100%;
+    padding: 1%;
+    width: 98%;
     background-color: rgb(153, 175, 196);
     grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
     gap: 16px; /* space between images */
 }
 .gallery-image{
+    display: flex;
     background-color: rgb(164, 186, 207);
     border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(153,176,198,0.15);
     align-items: center;
     justify-content: center;
     padding: 5%;
 }
 .gallery-image img {
     display: block;
-    width: auto;
-    height: auto;
+    max-width: 100%;
     object-fit: cover;
+    align-items: center;
+}
+.gallery-image.landscape {
+    grid-column: span 2;
 }

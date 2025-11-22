@@ -168,7 +168,18 @@ async function initGalleryPage(){
         img.src = photo.url;
         img.alt = photo.title || "";
         img.loading = "lazy"; // good for performance
+
+        //detect orientation
+        img.onload = () => {
+            if (img.naturalWidth > img.naturalHeight) {
+                card.classList.add('landscape');
+            } else {
+                card.classList.add('portrait');
+            }
+        };
+
         //TODO highlighted image seperate page
+
         card.appendChild(img);
         container.appendChild(card);
     });
