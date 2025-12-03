@@ -172,20 +172,39 @@ async function initGalleryPage(){
         img.alt = photo.title || "";
         img.loading = "lazy"; // good for performance
 
-        //detect orientation
-        img.onload = () => {
-            if (img.naturalWidth > img.naturalHeight) {
-                card.classList.add('landscape');
-            } else {
-                card.classList.add('portrait');
-            }
-            updateGalleryColumns()
-        };
-
         //TODO highlighted image seperate page
 
         card.appendChild(img);
         container.appendChild(card);
+
+        //detect orientation
+        img.onload = () => {
+            if (img.naturalWidth > img.naturalHeight) {
+                const screenWidth = window.innerWidth;
+                const index = Array.from(container.children).indexOf(card);
+
+                let columns;
+
+                if (screenWidth >= 1200) {
+                    columns = 4; // desktop large
+                } else if (screenWidth >= 900) {
+                    columns = 3; // tablet landscape
+                } else if (screenWidth >= 600) {
+                    columns = 2; // tablet portrait
+                } else {
+                    columns = 1; // mobile
+                }
+                if(index % columns === columns - 1) {
+                    columnReorder();
+                } else{
+                    updateGalleryColumns();
+                }
+                card.classList.add('landscape');
+            } else {
+                card.classList.add('portrait');
+                updateGalleryColumns();
+            }
+        };
     });
 }
 
@@ -201,6 +220,25 @@ function updateGalleryColumns(){
         columns = 3; // tablet landscape
     } else if (screenWidth >= 600) {
         columns = 2; // tablet portrait
+    } else {
+        columns = 1; // mobile
+    }
+
+    gallery.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+}
+
+function columnReorder(){
+    const gallery = document.getElementById("galleryGrid");
+    const screenWidth = window.innerWidth;
+
+    let columns;
+
+    if (screenWidth >= 1200) {
+        columns = 5; // desktop large
+    } else if (screenWidth >= 900) {
+        columns = 4; // tablet landscape
+    } else if (screenWidth >= 600) {
+        columns = 3; // tablet portrait
     } else {
         columns = 1; // mobile
     }
