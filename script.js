@@ -155,14 +155,25 @@ function startSlideshowSystem(){ //easy restart call
 
 //Gallery page
 async function initGalleryPage(){
-    window.addEventListener("load", updateGalleryColumns);
-    window.addEventListener("resize", updateGalleryColumns);
-
     const response = await fetch('/photos.json');
     const photos = await response.json();
 
     const container = document.getElementById('galleryGrid');
 
+    const screenWidth = window.innerWidth;
+    let columns;
+    if (screenWidth >= 1200) {
+        columns = 4; // desktop large
+    } else if (screenWidth >= 900) {
+        columns = 3; // tablet landscape
+    } else if (screenWidth >= 600) {
+        columns = 2; // tablet portrait
+    } else {
+        columns = 1; // mobile
+    }
+    let remainingColumns = columns;
+
+    let currentRow = createRow(columns);
     photos.forEach(photo => {
         const card = document.createElement('div');
         card.className = 'gallery-image';
@@ -175,56 +186,35 @@ async function initGalleryPage(){
         //TODO highlighted image seperate page
 
         card.appendChild(img);
-        container.appendChild(card);
 
         //detect orientation
         img.onload = () => {
+            currentRow.appendChild(card);
             if (img.naturalWidth > img.naturalHeight) {
-                const screenWidth = window.innerWidth;
-                const index = Array.from(container.children).indexOf(card);
-
-                let columns;
-
-                if (screenWidth >= 1200) {
-                    columns = 4; // desktop large
-                } else if (screenWidth >= 900) {
-                    columns = 3; // tablet landscape
-                } else if (screenWidth >= 600) {
-                    columns = 2; // tablet portrait
-                } else {
-                    columns = 1; // mobile
-                }
-                if(index % columns === columns - 1) {
-                    columnReorder();
-                } else{
-                    updateGalleryColumns();
+                remainingColumns = remainingColumns - 2;
+                if(remainingColumns < 0) {
+                    currentRow.style.gridTemplateColumns = `repeat(${columns+1}, 1fr)`;
+                    remainingColumns++;
                 }
                 card.classList.add('landscape');
             } else {
+                remainingColumns--;
                 card.classList.add('portrait');
-                updateGalleryColumns();
+            };
+            if(remainingColumns == 0){
+                container.appendChild(currentRow);
+                currentRow = createRow(columns);
+                remainingColumns = columns;
             }
         };
     });
 }
 
-function updateGalleryColumns(){
-    const gallery = document.getElementById("galleryGrid");
-    const screenWidth = window.innerWidth;
-
-    let columns;
-
-    if (screenWidth >= 1200) {
-        columns = 4; // desktop large
-    } else if (screenWidth >= 900) {
-        columns = 3; // tablet landscape
-    } else if (screenWidth >= 600) {
-        columns = 2; // tablet portrait
-    } else {
-        columns = 1; // mobile
-    }
-
-    gallery.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+function createRow(columns) {
+    const div = document.createElement("div");
+    div.classList.add("gallery-row");
+    div.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+    return div;
 }
 
 function columnReorder(){
