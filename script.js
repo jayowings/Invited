@@ -157,6 +157,7 @@ function startSlideshowSystem(){ //easy restart call
 async function initGalleryPage(){
     window.addEventListener("load", updateGalleryColumns);
     window.addEventListener("resize", updateGalleryColumns);
+    window.addEventListener("resize", () => {applyMasonryLayout();});
 
     const response = await fetch('/photos.json');
     const photos = await response.json();
@@ -179,7 +180,7 @@ async function initGalleryPage(){
             } else {
                 card.classList.add('portrait');
             }
-            updateGalleryColumns()
+            applyMasonry();
         };
 
         //TODO highlighted image seperate page
@@ -206,4 +207,49 @@ function updateGalleryColumns(){
     }
 
     gallery.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+}
+
+function applyMasonry(){
+    const container = document.getElementById("galleryGrid");
+    const items = Array.from(container.children);
+
+    // recaluculate columns for inner use
+    const screenWidth = window.innerWidth;
+    let columns;
+    if (screenWidth >= 1200) {
+        columns = 4; // desktop large
+    } else if (screenWidth >= 900) {
+        columns = 3; // tablet landscape
+    } else if (screenWidth >= 600) {
+        columns = 2; // tablet portrait
+    } else {
+        columns = 1; // mobile
+    }
+
+    //dynamic image size
+    const columnHeights = new Array(columns).fill(0);
+    const columnWidth = container.offsetWidth / columns;
+
+
+    items.forEach(item => {
+        const img = item.querySelector("img");
+
+        // Force item width
+        item.style.width = `${columnWidth}px`;
+
+        // Get rendered height
+        const itemHeight = item.offsetHeight;
+
+        // Find best placement column
+        const minColumn = columnHeights.indexOf(Math.min(...columnHeights));
+
+        // Position item
+        item.style.left = `${minColumn * columnWidth}px`;
+        item.style.top = `${columnHeights[minColumn]}px`;
+
+        // Update column height
+        columnHeights[minColumn] += itemHeight + 16; // add gap
+    });
+
+    container.style.height = Math.max(...columnHeights) + "px";
 }
