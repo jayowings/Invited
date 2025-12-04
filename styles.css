@@ -229,13 +229,12 @@ body{
 }
 .gallery-image{
     display: flex;
-    position: absolute;
     background-color: rgb(164, 186, 207);
     border-radius: 6px;
     overflow: hidden;
     align-items: center;
     justify-content: center;
-    /*padding: 5%;*/
+    padding: 5%;
 }
 .gallery-image img {
     display: block;
