@@ -155,15 +155,25 @@ function startSlideshowSystem(){ //easy restart call
 
 //Gallery page
 async function initGalleryPage(){
-    window.addEventListener("load", updateGalleryColumns);
-    window.addEventListener("resize", updateGalleryColumns);
-    window.addEventListener("resize", () => {applyMasonryLayout();});
-
     const response = await fetch('/photos.json');
     const photos = await response.json();
 
     const container = document.getElementById('galleryGrid');
 
+    const screenWidth = window.innerWidth;
+    let columns;
+    if (screenWidth >= 1200) {
+        columns = 4; // desktop large
+    } else if (screenWidth >= 900) {
+        columns = 3; // tablet landscape
+    } else if (screenWidth >= 600) {
+        columns = 2; // tablet portrait
+    } else {
+        columns = 1; // mobile
+    }
+    let remainingColumns = columns;
+
+    let currentRow = createRow(columns);
     photos.forEach(photo => {
         const card = document.createElement('div');
         card.className = 'gallery-image';
@@ -173,35 +183,52 @@ async function initGalleryPage(){
         img.alt = photo.title || "";
         img.loading = "lazy"; // good for performance
 
-        //detect orientation
-        img.onload = () => {
-            if (img.naturalWidth > img.naturalHeight) {
-                card.classList.add('landscape');
-            } else {
-                card.classList.add('portrait');
-            }
-            applyMasonry();
-        };
-
         //TODO highlighted image seperate page
 
         card.appendChild(img);
-        container.appendChild(card);
+
+        //detect orientation
+        img.onload = () => {
+            currentRow.appendChild(card);
+            if (img.naturalWidth > img.naturalHeight) {
+                remainingColumns = remainingColumns - 2;
+                if(remainingColumns < 0) {
+                    currentRow.style.gridTemplateColumns = `repeat(${columns+1}, 1fr)`;
+                    remainingColumns++;
+                }
+                card.classList.add('landscape');
+            } else {
+                remainingColumns--;
+                card.classList.add('portrait');
+            };
+            if(remainingColumns == 0){
+                container.appendChild(currentRow);
+                currentRow = createRow(columns);
+                remainingColumns = columns;
+            }
+        };
     });
 }
 
-function updateGalleryColumns(){
+function createRow(columns) {
+    const div = document.createElement("div");
+    div.classList.add("gallery-row");
+    div.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+    return div;
+}
+
+function columnReorder(){
     const gallery = document.getElementById("galleryGrid");
     const screenWidth = window.innerWidth;
 
     let columns;
 
     if (screenWidth >= 1200) {
-        columns = 4; // desktop large
+        columns = 5; // desktop large
     } else if (screenWidth >= 900) {
-        columns = 3; // tablet landscape
+        columns = 4; // tablet landscape
     } else if (screenWidth >= 600) {
-        columns = 2; // tablet portrait
+        columns = 3; // tablet portrait
     } else {
         columns = 1; // mobile
     }
