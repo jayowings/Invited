@@ -245,3 +245,20 @@ body{
 .gallery-image.landscape {
     grid-column: span 2;
 }
+
+
+
+
+/* Picture Close up page */
+.closeUp{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: rgb(157, 164, 157);
+    height: auto;
+}
+.picture{
+    max-width: 66%;
+    max-height: 100%;
+}
