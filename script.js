@@ -57,8 +57,10 @@ async function loadPhotos() {
         const img = document.createElement('img');
         img.src = photo.url;
         img.alt = photo.title || "";
+        img.addEventListener("click", () => {
+            window.location.href = `/photo.html?id=${photo.id}`;
+        });
         div.appendChild(img);
-        //TODO add click statements to photots
         return div;
     });
 
@@ -189,6 +191,9 @@ async function initGalleryPage(){
 
         //detect orientation
         img.onload = () => {
+            card.addEventListener("click", () => {
+                window.location.href = `/photo.html?id=${photo.id}`;
+            });
             currentRow.appendChild(card);
             if (img.naturalWidth > img.naturalHeight) {
                 remainingColumns = remainingColumns - 2;
@@ -234,4 +239,14 @@ function columnReorder(){
     }
 
     gallery.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+}
+
+async function initPhotoPage() {
+    //Pull photo by id
+    //fill img object, fill or remove title object and info object
+
+    const container = document.getElementById('content');
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    //if (screenWidth >= screenHeight){} //For portrait displays or if there is no title put the information under the photo
 }
