@@ -57,8 +57,9 @@ async function loadPhotos() {
         const img = document.createElement('img');
         img.src = photo.url;
         img.alt = photo.title || "";
-        // img.addEventListener("click", () => {
-        // });
+        img.addEventListener("click", () => {
+            openPopup(photo.url, photo.title);
+        });
         div.appendChild(img);
         return div;
     });
@@ -190,8 +191,9 @@ async function initGalleryPage(){
 
         //detect orientation
         img.onload = () => {
-            // card.addEventListener("click", () => {
-            // });
+            card.addEventListener("click", () => {
+                openPopup(photo.url, photo.title);
+            });
             currentRow.appendChild(card);
             if (img.naturalWidth > img.naturalHeight) {
                 remainingColumns = remainingColumns - 2;
@@ -237,4 +239,14 @@ function columnReorder(){
     }
 
     gallery.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+}
+
+function openPopup(url, title = "") {
+    const box = document.querySelector(".popup");
+    const img = document.querySelector(".enlarged");
+
+    img.src = url;
+    img.alt = title;
+
+    box.classList.remove("hidden");
 }
