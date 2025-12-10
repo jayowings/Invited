@@ -8,6 +8,7 @@ let timer;
 let visibleSlides = 3;
 let size;
 window.addEventListener('resize', handleResize);
+popupSetup();
 
 //Home page
 function initSlideshow(){
@@ -249,4 +250,21 @@ function openPopup(url, title = "") {
     img.alt = title;
 
     box.classList.remove("hidden");
+}
+
+function closePopup() {
+    document.querySelector(".popup").classList.add("hidden");
+}
+
+function popupSetup(){
+    //close with esc
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closePopup();
+    });
+
+    //close on click away
+    const box = document.querySelector(".popup");
+    box.addEventListener("click", (e) => {
+        if (e.target === box) closePopup();
+    });
 }
