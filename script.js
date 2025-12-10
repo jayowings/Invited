@@ -241,12 +241,32 @@ function columnReorder(){
     gallery.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
 }
 
+//Photo page
 async function initPhotoPage() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
     //Pull photo by id
+    let photo;
+    photo = await fetchPhotoById(id);
+
     //fill img object, fill or remove title object and info object
+    const pictureDiv = document.createElement('div');
+    pictureDiv.className = 'picture';
+
+    const imgEl = document.createElement('img');
+    imgEl.alt = 'Wedding Photo'; // updated later if title exists
+
+    pictureDiv.appendChild(imgEl);
 
     const container = document.getElementById('content');
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
     //if (screenWidth >= screenHeight){} //For portrait displays or if there is no title put the information under the photo
+}
+
+async function fetchPhotoById(id) {
+  const res = await fetch('/photos.json');
+  const photos = await res.json();
+  return photos.find(p => p.id === id);
 }
