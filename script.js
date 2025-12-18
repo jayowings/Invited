@@ -242,6 +242,8 @@ function columnReorder(){
     gallery.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
 }
 
+
+//Popup
 function openPopup(url, title = "") {
     const box = document.querySelector(".popup");
     const img = document.querySelector(".enlarged");

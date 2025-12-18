@@ -267,3 +267,22 @@ body{
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(255,255,255,0.2);
 }
+
+
+#countdown{
+    display: flex;
+    font-family: "Kapakana", cursive;
+}
+
+.time-container{
+    text-align: center;
+}
+
+.time{
+    font-size: 4em;
+    font-weight: 700;
+}
+
+.label{
+    font-size: 1.4em;
+}
