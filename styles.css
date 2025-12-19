@@ -269,13 +269,10 @@ body{
 }
 
 
-#countdown{
-    display: flex;
-    font-family: "Kapakana", cursive;
-}
 
 .time-container{
     text-align: center;
+    font-family: "Kapakana", cursive;
 }
 
 .time{
@@ -284,5 +281,5 @@ body{
 }
 
 .label{
-    font-size: 1.4em;
+    font-size: 4em;
 }

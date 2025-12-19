@@ -9,6 +9,7 @@ let visibleSlides = 3;
 let size;
 window.addEventListener('resize', handleResize);
 popupSetup();
+const wedDate = new Date("2026-01-17T00:00:00");
 
 //Home page
 function initSlideshow(){
@@ -32,6 +33,7 @@ function initSlideshow(){
   document.querySelector('.prev').addEventListener('click', () => { prevPic(); resetTimer(); });
 
   loadPhotos();
+  initCountdown();
 }
 
 async function loadPhotos() {
@@ -155,6 +157,24 @@ function startSlideshowSystem(){ //easy restart call
   updatePics();
   startSlideshow();
 }
+
+//Countdown
+function initCountdown(){
+    const daysBox = document.getElementById("countdown-days");
+    if (!daysBox) {
+        console.log('Error 1');
+        return;
+    }
+    const today = new Date();
+    
+    let dif = wedDate - today;
+    dif = Math.max(
+            Math.ceil(dif / (1000 * 60 * 60 * 24)),
+            0
+        );
+    daysBox.textContent = dif;
+}
+
 
 //Gallery page
 async function initGalleryPage(){
