@@ -102,10 +102,10 @@ a{
 
 .center{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     background-color: rgb(215, 220, 223);
-    padding: 150px;
+    padding-top: 150px;
 }
 h1{
     font-family: "Kapakana", cursive;
@@ -142,6 +142,42 @@ h1{
     font-optical-sizing: auto;
     font-style: normal;
 }
+.color-text{
+    text-align: center;
+    font-size: 25px;
+    font-weight: 10;
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+.colors{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0;
+    gap: 0;
+    padding: 0;
+}
+.color{
+    height: 200px;
+    width: 20%;
+}
+.maroon{
+    background-color: rgb(79, 16, 24);
+}
+.blue{
+    background-color: rgb(153, 175, 196);
+}
+.sage{
+    background-color: rgb(150, 160, 150);
+}
+.navy{
+    background-color: rgb(16, 25, 53);
+}
+.forest{
+    background-color: rgb(5, 50, 37);
+}
+
 
 .Break{
     display: flex;
